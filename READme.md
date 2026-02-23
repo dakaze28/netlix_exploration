@@ -32,21 +32,6 @@ netflix_df = pd.read_csv("netflix_data.csv")
 netflix_df['release_year'].unique()
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    Cell In[3], line 2
-          1 # Importing pandas and matplotlib
-    ----> 2 import pandas as pd
-          3 import matplotlib.pyplot as plt
-          4 import numpy as np
-    
-
-    ModuleNotFoundError: No module named 'pandas'
-
-
 ## 1. Show in a histogram the frequencies of the movies during the 90s
 
 
@@ -135,21 +120,6 @@ plt.bar(x=netflix_production.index,
 plt.axhline(production_mean, color='gray', linestyle='--', label=f'Average: {production_mean:.2f}')
 plt.show()
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[1], line 2
-          1 #Make a dataframe with counts of movies by year.
-    ----> 2 netflix_production = netflix_df.groupby('release_year').count()
-          3 netflix_production = netflix_production[['show_id']]
-          5 #Build column chart for yearly releases in Netflix.
-    
-
-    NameError: name 'netflix_df' is not defined
-
 
 ### 2. What are the top 10 most recurring / casted actors for the period of 2005 to 2010? 
 Show your results in a query table -> SQL
@@ -623,12 +593,7 @@ plt.bar_label(bars,
              fontsize=15)
 plt.axvline(production_mean2, color='gray', linestyle='--', label=f'Average: {production_mean:.2f}')
 plt.show()
-```
-
-
-    
-![png](notebook_files/notebook_20_0.png)
-    
+```  
 
 
 ## 4. What was the most popular genre for each year in dataset? <br>
@@ -641,15 +606,6 @@ FROM netflix_df
 GROUP BY release_year, genre
 ORDER BY release_year DESC, genre DESC
 ```
-
-
-      Cell In[1], line 1
-        SELECT release_year, genre, count(show_id) AS qty
-               ^
-    SyntaxError: invalid syntax
-    
-
-
 
 ```python
 netflix_popular_topgenres = netflix_popular_genres.groupby(['release_year','genre']).max().sort_values(by=['qty'],ascending=False).reset_index()
@@ -754,5 +710,6 @@ netflix_popular_topgenres.sort_values(by='release_year', ascending=False)
 </table>
 <p>71 rows × 3 columns</p>
 </div>
+
 
 
